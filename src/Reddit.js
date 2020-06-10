@@ -1,10 +1,10 @@
-import React,{useContext} from "react";
+import React,{useContext,useEffect} from "react";
 import axios from "axios";
 import {PostContext} from './PostContext';
 function Reddit(){
    
    const [posts,setPosts]=useContext(PostContext);
-   React.useEffect(() => {
+   useEffect(() => {
     axios.get(`https://www.reddit.com/r/reactjs.json`)
       .then(res => {
         const newPosts = res.data.data.children
