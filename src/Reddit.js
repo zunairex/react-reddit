@@ -1,17 +1,19 @@
-import React,{useState} from "react";
+import React,{useContext} from "react";
 import axios from "axios";
-
+import {PostContext} from './PostContext';
 function Reddit(){
-    const [posts,setPosts]=useState([]);
-    React.useEffect(() => {
-        axios.get(`https://www.reddit.com/r/reactjs.json`)
-          .then(res => {
-            const newPosts = res.data.data.children
-              .map(obj => obj.data);
-      
-            setPosts(newPosts);
-          });
-      }, []);
+   
+   const [posts,setPosts]=useContext(PostContext);
+   React.useEffect(() => {
+    axios.get(`https://www.reddit.com/r/reactjs.json`)
+      .then(res => {
+        const newPosts = res.data.data.children
+          .map(obj => obj.data);
+  
+        setPosts(newPosts);
+      });
+  }, []);
+
     return (
         <div>
             <ul>
