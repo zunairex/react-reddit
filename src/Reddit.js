@@ -1,10 +1,10 @@
-import React,{useContext,useEffect} from "react";
+import React,{useContext} from "react";
 import axios from "axios";
 import {PostContext} from './PostContext';
 function Reddit(){
    
    const [posts,setPosts]=useContext(PostContext);
-   useEffect(() => {
+   
     axios.get(`https://www.reddit.com/r/reactjs.json`)
       .then(res => {
         const newPosts = res.data.data.children
@@ -12,7 +12,7 @@ function Reddit(){
   
         setPosts(newPosts);
       });
-  }, []);
+ 
 
     return (
         <div>
